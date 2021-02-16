@@ -32,8 +32,10 @@ class MyHomePage extends StatelessWidget {
         id: 't02', title: 'Trainers', amount: 49.99, date: DateTime.now()),
     Transaction(
         id: 't03', title: 'Coffee mug', amount: 5.99, date: DateTime.now()),
+        Transaction(
+        id: 't04', title: 'Lunch date', amount: 17.99, date: DateTime.now()),
     Transaction(
-        id: 't04',
+        id: 't05',
         title: 'Supermarket shopping',
         amount: 27.54,
         date: DateTime.now()),
@@ -50,13 +52,21 @@ class MyHomePage extends StatelessWidget {
           children: transactions.map((transaction) {
         return Card(
           child: Row(
-            children: [
-              Text("${transaction.amount}"),
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    color: Colors.blue[50],
+                    width: 2
+                  )),
+                  padding: EdgeInsets.all(10),
+                child: Text("${transaction.amount}", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                Text(transaction.title),
-                Text("${transaction.date}"),
+                Text(transaction.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
+                Text("${transaction.date}", style: TextStyle(color: Colors.grey),),
               ],)
             ],
           )
