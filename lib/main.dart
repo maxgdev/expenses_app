@@ -41,7 +41,9 @@ class MyHomePage extends StatelessWidget {
         amount: 27.54,
         date: DateTime.now()),
   ];
-
+  // Input controllors
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -63,13 +65,20 @@ class MyHomePage extends StatelessWidget {
                 children: [
                   TextField(
                     decoration: InputDecoration(labelText: 'Title'),
+                    controller: titleController,
                   ),
-                  TextField(decoration: InputDecoration(labelText: 'Amount')),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                    controller: amountController,
+                  ),
                   FlatButton(
-                    child: Text("Add Transaction"), 
-                    onPressed: () {},
+                    child: Text("Add Transaction"),
+                    onPressed: () {
+                      print(titleController.text);
+                      print(amountController.text);
+                    },
                     textColor: Colors.blue,
-                    ),
+                  ),
                   // () {} Anonymous function to enable onPress
                 ],
               ),
@@ -83,22 +92,23 @@ class MyHomePage extends StatelessWidget {
                   child: Row(
                 children: <Widget>[
                   Container(
-                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      margin:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
                       decoration: BoxDecoration(
                           border: Border.all(color: Colors.blue[50], width: 2)),
                       padding: EdgeInsets.all(10),
                       child: Text(
                         "${transaction.amount}",
-                        style:
-                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       )),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         transaction.title,
-                        style:
-                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       Text(
                         DateFormat.yMMMd().format(transaction.date),
