@@ -33,7 +33,7 @@ class MyHomePage extends StatelessWidget {
         id: 't02', title: 'Trainers', amount: 49.99, date: DateTime.now()),
     Transaction(
         id: 't03', title: 'Coffee mug', amount: 5.99, date: DateTime.now()),
-        Transaction(
+    Transaction(
         id: 't04', title: 'Lunch date', amount: 17.99, date: DateTime.now()),
     Transaction(
         id: 't05',
@@ -50,38 +50,68 @@ class MyHomePage extends StatelessWidget {
       ),
       body: Column(
         children: [
-            Container(
-              width: double.infinity,
-              height: 150,
-              child: Image.network("https://via.placeholder.com/800x280.png/?text=Chart+Area"),
+          Container(
+            width: double.infinity,
+            height: 150,
+            child: Image.network(
+                "https://via.placeholder.com/800x280.png/?text=Chart+Area"),
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              child: Column(
+                children: [
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                  ),
+                  TextField(decoration: InputDecoration(labelText: 'Amount')),
+                  FlatButton(
+                    child: Text("Add Transaction"), 
+                    onPressed: () {},
+                    textColor: Colors.blue,
+                    ),
+                  // () {} Anonymous function to enable onPress
+                ],
+              ),
             ),
-          Column(
-            // iterate over transactions variable
-            children: transactions.map((transaction) {
-            return Card(
-              child: Row(
+          ),
+          SingleChildScrollView(
+            child: Column(
+                // iterate over transactions variable
+                children: transactions.map((transaction) {
+              return Card(
+                  child: Row(
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.blue[50],
-                        width: 2
-                      )),
+                      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      decoration: BoxDecoration(
+                          border: Border.all(color: Colors.blue[50], width: 2)),
                       padding: EdgeInsets.all(10),
-                    child: Text("${transaction.amount}", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),)),
+                      child: Text(
+                        "${transaction.amount}",
+                        style:
+                            TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      )),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                    Text(transaction.title, style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),),
-                    Text(DateFormat.yMMMd().format(transaction.date), style: TextStyle(color: Colors.grey),),
-                  ],)
+                      Text(
+                        transaction.title,
+                        style:
+                            TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        DateFormat.yMMMd().format(transaction.date),
+                        style: TextStyle(color: Colors.grey),
+                      ),
+                    ],
+                  )
                 ],
-              )
-            );
-          }).toList() // Convert transactions to iterable List
+              ));
+            }).toList() // Convert transactions to iterable List
 
-              ),
+                ),
+          ),
         ],
       ),
     );
