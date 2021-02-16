@@ -24,23 +24,24 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Expenses App'),
       ),
-      body: Column(
-        children: [
-          Container(
-            width: double.infinity,
-            height: 150,
-            child: Image.network(
-                "https://via.placeholder.com/800x280.png/?text=Chart+Area"),
-          ),
-          TransactionsView(),
-        ],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              width: double.infinity,
+              height: 150,
+              child: Image.network(
+                  "https://via.placeholder.com/800x280.png/?text=Chart+Area"),
+            ),
+            TransactionsView(),
+          ],
+        ),
       ),
     );
   }

@@ -6,6 +6,7 @@ class TransactionList extends StatelessWidget {
   final List<Transaction> transactions;
 
   TransactionList(this.transactions);
+  // SingleChildScrollView
   
   @override
   Widget build(BuildContext context) {
