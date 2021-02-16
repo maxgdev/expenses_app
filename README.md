@@ -6,4 +6,6 @@ Flutter Expenses App.
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 - [online documentation](https://flutter.dev/docs), which offers tutorials,
 - Packt
+- https://placeholder.com/
+- https://pub.dev/packages/intl
 
