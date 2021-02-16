@@ -9,8 +9,8 @@ class TransactionsView extends StatefulWidget {
 }
 
 class _TransactionsViewState extends State<TransactionsView> {
-  // Define some dummy data
-  // List of Transactions
+  
+  // Define some dummy List of Transactions
   final List<Transaction> _transactions = [
     Transaction(
         id: 't01', title: 'Office Shirt', amount: 19.99, date: DateTime.now()),
