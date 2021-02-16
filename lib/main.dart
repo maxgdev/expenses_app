@@ -16,29 +16,75 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: MyHomePage(title: 'Expenses App'),
+      home: MyHomePage(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.title),
+        title: Text('Expenses App'),
       ),
-      body: Center(
-        child: Text('Bare Bones Scaffold'),
+      body: Column(
+        children: <Widget>[
+          Container(
+            width: double.infinity,
+            height: 100,
+            child: 
+            Card(
+              child:Text("This is where the chart will go"),
+              color: Colors.blue,
+              elevation: 5,
+            ),),
+          Container(
+            // Card #1 Container 
+             width: double.infinity,
+             height: 40,
+            //  color: Colors.blue[200],
+            child: 
+            Card(
+              child:Text("Expenses item goes"),
+              color: Colors.blue[200],
+              elevation: 5,
+            ),),
+          Container(
+            // Card #2 Container 
+             width: double.infinity,
+             height: 40,
+            //  color: Colors.blue[200],
+            child: 
+            Card(
+              child:Text("Expenses item goes"),
+              color: Colors.blue[200],
+              elevation: 5,
+            ),),
+          Container(
+            // Card #3 Container 
+             width: double.infinity,
+             height: 40,
+            //  color: Colors.blue[200],
+            child: 
+            Card(
+              child:Text("Expenses item goes"),
+              color: Colors.blue[200],
+              elevation: 5,
+            ),),
+          Container(
+            // Card #4 Container 
+             width: double.infinity,
+             height: 40,
+            //  color: Colors.blue[200],
+            child: 
+            Card(
+              child:Text("Expenses item goes"),
+              color: Colors.blue[200],
+              elevation: 5,
+            ),),                                        
+        ],
       ),
     );
   }
