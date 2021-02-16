@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import './transaction_list.dart';
 import './transactions_view.dart';
 
 void main() {

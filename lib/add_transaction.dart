@@ -28,7 +28,10 @@ class AddTransaction extends StatelessWidget {
               onPressed: () {
                 // print(titleController.text);
                 // print(amountController.text);
-                addTransactionFn(titleController.text, double.parse(amountController.text));
+                addTransactionFn(
+                  titleController.text, 
+                  double.parse(amountController.text)
+                  );
               },
               textColor: Colors.blue,
             ),

@@ -22,7 +22,7 @@ class TransactionList extends StatelessWidget {
                   border: Border.all(color: Colors.blue[50], width: 2)),
               padding: EdgeInsets.all(10),
               child: Text(
-                "${transaction.amount}",
+                "${transaction.amount.toStringAsFixed(2)}",  // Ensure amount has 2 decimal places
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               )),
           Column(
