@@ -1,9 +1,8 @@
-import 'package:expenses_app/single_bar.dart';
 import 'package:flutter/material.dart';
 import './transaction.dart';
 import './transaction_list.dart';
 import './add_transaction.dart';
-import './single_bar.dart';
+import './chart_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -49,6 +48,8 @@ class _MyHomePageState extends State<MyHomePage> {
         date: DateTime.now()),
   ];
 
+  final List<Transaction> recentTransactions = [];
+
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTransaction = Transaction(
       id: DateTime.now().toString(),
@@ -92,23 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //   child: Image.network(
             //       "https://via.placeholder.com/800x280.png/?text=Chart+Area"),
             // ),
-            Container(
-              child: Card( 
-                elevation: 6,
-                margin: EdgeInsets.all(20),
-                child: Padding(padding: EdgeInsets.all(5),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      SingleBar('M', 5, 0.05),
-                      SingleBar('T', 25, 0.25),
-                      SingleBar('W', 10, 0.1),
-                      SingleBar('Th', 15, 0.15),
-                      SingleBar('F', 25, 0.25),
-                    ],),
-                  ),
-              ),
-            ),
+            ChartView(recentTransactions),
             // AddTransaction(_addNewTransaction),
             TransactionList(_transactions),
             // TransactionsView(),
