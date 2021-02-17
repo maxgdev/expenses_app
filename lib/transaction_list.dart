@@ -10,7 +10,7 @@ class TransactionList extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return transactions.isEmpty ? Image.asset('assets/waiting.jpg') : Column(
         // iterate over transactions variable
         children: transactions.map((transaction) {
       return Card(
@@ -19,11 +19,14 @@ class TransactionList extends StatelessWidget {
           Container(
               margin: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
               decoration: BoxDecoration(
-                  border: Border.all(color: Colors.blue[50], width: 2)),
+                  border: Border.all(color: Theme.of(context).accentColor, width: 3)),
               padding: EdgeInsets.all(10),
               child: Text(
-                "${transaction.amount.toStringAsFixed(2)}",  // Ensure amount has 2 decimal places
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                "£${transaction.amount.toStringAsFixed(2)}",  // Ensure amount has 2 decimal places
+                style: TextStyle
+                (fontSize: 20,
+                color: Theme.of(context).accentColor, 
+                fontWeight: FontWeight.bold),
               )),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
