@@ -99,9 +99,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      ChartView(),
-                      ChartView(),
-                      ChartView()
+                      ChartView('M', 5, 0.05),
+                      ChartView('T', 25, 0.25),
+                      ChartView('W', 10, 0.1),
+                      ChartView('M', 15, 0.15),
+                      ChartView('T', 25, 0.25),
                     ],),
                   ),
               ),
