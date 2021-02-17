@@ -48,8 +48,16 @@ class _MyHomePageState extends State<MyHomePage> {
         date: DateTime.now()),
   ];
 
-  final List<Transaction> recentTransactions = [];
-
+  // final List<Transaction> recentTransactions = [];
+    List<Transaction> get _recentTransactions {
+      return _transactions.where((tx) {
+        return tx.date.isAfter(
+          DateTime.now().subtract(
+            Duration(days: 7),
+          ),
+        );
+      }).toList();
+    }
   void _addNewTransaction(String txTitle, double txAmount) {
     final newTransaction = Transaction(
       id: DateTime.now().toString(),
@@ -93,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
             //   child: Image.network(
             //       "https://via.placeholder.com/800x280.png/?text=Chart+Area"),
             // ),
-            ChartView(recentTransactions),
+            ChartView(_recentTransactions),
             // AddTransaction(_addNewTransaction),
             TransactionList(_transactions),
             // TransactionsView(),

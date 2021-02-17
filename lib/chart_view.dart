@@ -16,6 +16,9 @@ class ChartView extends StatelessWidget {
         Duration(days: index),
       );
       var totalSum = 0.0;
+      // debug
+      print("weekDay: ${weekDay.day} month:: ${weekDay.month} ");
+      print("totalSum: $totalSum");
 
       for (var i = 0; i < weeksTransactions.length; i++) {
         if (weeksTransactions[i].date.day == weekDay.day &&
@@ -37,7 +40,7 @@ class ChartView extends StatelessWidget {
   double get totalSpending {
     return grpTransactionValues.fold(0.0, (sum, item) {
       var returnedTotal = sum + item['amount'];
-      print(returnedTotal);
+      print("total $returnedTotal");
       return returnedTotal;
     });
   }
@@ -51,28 +54,20 @@ class ChartView extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.all(5),
           child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: grpTransactionValues.map((data) {
-                return Flexible(
-                  fit: FlexFit.tight,
-                  child: SingleBar(
-                    data['day'],
-                    data['amount'],
-                    totalSpending == 0.0
-                        ? 0.0
-                        : (data['amount'] as double) / totalSpending,
-                  ),
-                );
-              }).toList(),
-
-              // [
-              //   SingleBar('M', 5, 0.05),
-              //   SingleBar('T', 25, 0.25),
-              //   SingleBar('W', 10, 0.1),
-              //   SingleBar('Th', 15, 0.15),
-              //   SingleBar('F', 25, 0.25),
-              // ],
-              ),
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: grpTransactionValues.map((data) {
+              return Flexible(
+                fit: FlexFit.tight,
+                child: SingleBar(
+                  data['day'],
+                  data['amount'],
+                  totalSpending == 0.0
+                      ? 0.0
+                      : (data['amount'] as double) / totalSpending,
+                ),
+              );
+            }).toList(),
+          ),
         ),
       ),
     );
