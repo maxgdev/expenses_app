@@ -1,22 +1,9 @@
 import 'package:flutter/material.dart';
-import './transactions_view.dart';
-
+import './transaction.dart';
+import './transaction_list.dart';
+import './add_transaction.dart';
 void main() {
   runApp(MyApp());
-}
-
-void openModal(BuildContext context) {
-  showModalBottomSheet(
-    context: context,
-    builder: (context) {
-      print("Opened Modal pop-up");
-      return Container(
-        margin: EdgeInsets.symmetric(vertical: 20),
-        padding: const EdgeInsets.all(18.0),
-        child: Text("Modal Pop-up"),
-      );
-    },
-  );
 }
 
 class MyApp extends StatelessWidget {
@@ -36,7 +23,56 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
+class MyHomePage extends StatefulWidget {
+  @override
+  _MyHomePageState createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  // Define some dummy List of Transactions
+  final List<Transaction> _transactions = [
+    Transaction(
+        id: 't01', title: 'Office Shirt', amount: 19.99, date: DateTime.now()),
+    Transaction(
+        id: 't02', title: 'Trainers', amount: 49.99, date: DateTime.now()),
+    Transaction(
+        id: 't03', title: 'Coffee mug', amount: 5.99, date: DateTime.now()),
+    Transaction(
+        id: 't04', title: 'Lunch date', amount: 17.99, date: DateTime.now()),
+    Transaction(
+        id: 't05',
+        title: 'Supermarket shopping',
+        amount: 27.54,
+        date: DateTime.now()),
+  ];
+
+  void _addNewTransaction(String txTitle, double txAmount) {
+    final newTransaction = Transaction(
+      id: DateTime.now().toString(),
+      title: txTitle,
+      amount: txAmount,
+      date: DateTime.now(),
+    );
+
+    setState(() {
+      _transactions.add(newTransaction);
+    });
+  }
+
+  // Open Bottom Modal widget
+  void openModal(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        print("Opened Modal pop-up");
+        return Container(
+          margin: EdgeInsets.symmetric(vertical: 20),
+          padding: const EdgeInsets.all(18.0),
+          child: Text("Modal Pop-up"),
+        );
+      },
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,7 +89,9 @@ class MyHomePage extends StatelessWidget {
               child: Image.network(
                   "https://via.placeholder.com/800x280.png/?text=Chart+Area"),
             ),
-            TransactionsView(),
+            AddTransaction(_addNewTransaction),
+            TransactionList(_transactions),
+            // TransactionsView(),
           ],
         ),
       ),
