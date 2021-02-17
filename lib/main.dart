@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './transaction.dart';
 import './transaction_list.dart';
 import './add_transaction.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -65,20 +66,19 @@ class _MyHomePageState extends State<MyHomePage> {
       context: context,
       builder: (context) {
         print("Opened Modal pop-up");
-        return Container(
-          margin: EdgeInsets.symmetric(vertical: 20),
-          padding: const EdgeInsets.all(18.0),
-          child: Text("Modal Pop-up"),
-        );
+        return GestureDetector(
+            onTap: () {},
+            behavior: HitTestBehavior.opaque,
+            child: AddTransaction(_addNewTransaction));
       },
     );
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Expenses App'), actions: [
-        IconButton(
-            icon: Icon(Icons.add),color: Colors.red, onPressed: () => openModal(context))
+        IconButton(icon: Icon(Icons.add), onPressed: () => openModal(context))
       ]),
       body: SingleChildScrollView(
         child: Column(
@@ -89,7 +89,7 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Image.network(
                   "https://via.placeholder.com/800x280.png/?text=Chart+Area"),
             ),
-            AddTransaction(_addNewTransaction),
+            // AddTransaction(_addNewTransaction),
             TransactionList(_transactions),
             // TransactionsView(),
           ],

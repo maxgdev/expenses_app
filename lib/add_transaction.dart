@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
 
-class AddTransaction extends StatelessWidget {
+class AddTransaction extends StatefulWidget {
   // Define function parameter
   final Function addTransactionFn;
   AddTransaction(this.addTransactionFn);
-  // Input controllors
+
+  @override
+  _AddTransactionState createState() => _AddTransactionState();
+}
+
+class _AddTransactionState extends State<AddTransaction> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+
+  void submitData() {
+    final titleData = titleController.text;
+    final amountData = double.parse(amountController.text);
+
+    if (titleData.isEmpty || amountData <= 0) {
+      return; // return if fields are empty
+    }
+    widget.addTransactionFn(titleData, amountData);
+    Navigator.of(context).pop();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -25,14 +41,14 @@ class AddTransaction extends StatelessWidget {
             ),
             FlatButton(
               child: Text("Add Transaction"),
-              onPressed: () {
-                // print(titleController.text);
-                // print(amountController.text);
-                addTransactionFn(
-                  titleController.text, 
-                  double.parse(amountController.text)
-                  );
-              },
+              onPressed: () => submitData(),
+              // print(titleController.text);
+              // print(amountController.text);
+              // widget.addTransactionFn(
+              //   titleController.text,
+              //   double.parse(amountController.text)
+              //   );
+              // },
               textColor: Colors.blue,
             ),
             // () {} Anonymous function to enable onPress
