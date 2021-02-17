@@ -40,7 +40,8 @@ class TransactionList extends StatelessWidget {
                   style: TextStyle(color: Colors.grey),
                 ),
               ],
-            )
+            ),
+            IconButton(icon: Icon(Icons.delete), onPressed: () {}, color: Colors.grey,)
           ],
         ));
     }).toList() // Convert transactions to iterable List
