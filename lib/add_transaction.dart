@@ -41,7 +41,7 @@ class _AddTransactionState extends State<AddTransaction> {
             ),
             FlatButton(
               child: Text("Add Transaction"),
-              onPressed: () => submitData(),
+              onPressed: submitData,
               // print(titleController.text);
               // print(amountController.text);
               // widget.addTransactionFn(
