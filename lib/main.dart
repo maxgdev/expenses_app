@@ -1,8 +1,9 @@
+import 'package:expenses_app/single_bar.dart';
 import 'package:flutter/material.dart';
 import './transaction.dart';
 import './transaction_list.dart';
 import './add_transaction.dart';
-import './chart.dart';
+import './single_bar.dart';
 
 void main() {
   runApp(MyApp());
@@ -99,11 +100,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      ChartView('M', 5, 0.05),
-                      ChartView('T', 25, 0.25),
-                      ChartView('W', 10, 0.1),
-                      ChartView('M', 15, 0.15),
-                      ChartView('T', 25, 0.25),
+                      SingleBar('M', 5, 0.05),
+                      SingleBar('T', 25, 0.25),
+                      SingleBar('W', 10, 0.1),
+                      SingleBar('Th', 15, 0.15),
+                      SingleBar('F', 25, 0.25),
                     ],),
                   ),
               ),

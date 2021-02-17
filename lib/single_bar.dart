@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class ChartView extends StatelessWidget {
+class SingleBar extends StatelessWidget {
   final String label;
   final double spendingAmount;
   final double spendingPctOfTotal;
 
-  ChartView(this.label, this.spendingAmount, this.spendingPctOfTotal);
+  SingleBar(this.label, this.spendingAmount, this.spendingPctOfTotal);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ChartView extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey, width: 1.0),
-                    color: Color.fromRGBO(220, 220, 220, 1),
+                    color: Color.fromRGBO(218, 218, 218, 1),
                     borderRadius: BorderRadius.circular(5),
                   ),
                 ),
