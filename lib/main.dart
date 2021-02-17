@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import './transaction.dart';
 import './transaction_list.dart';
 import './add_transaction.dart';
@@ -57,13 +58,13 @@ class _MyHomePageState extends State<MyHomePage> {
         );
       }).toList();
     }
-    
-  void _addNewTransaction(String txTitle, double txAmount) {
+
+  void _addNewTransaction(String txTitle, double txAmount, DateTime selectedDate ) {
     final newTransaction = Transaction(
       id: DateTime.now().toString(),
       title: txTitle,
       amount: txAmount,
-      date: DateTime.now(),
+      date: selectedDate,
     );
 
     setState(() {
@@ -76,7 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        print("Opened Modal pop-up");
         return GestureDetector(
             onTap: () {},
             behavior: HitTestBehavior.opaque,
@@ -95,23 +95,14 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            // Container(
-            //   width: double.infinity,
-            //   height: 150,
-            //   child: Image.network(
-            //       "https://via.placeholder.com/800x280.png/?text=Chart+Area"),
-            // ),
             ChartView(_recentTransactions),
-            // AddTransaction(_addNewTransaction),
             TransactionList(_transactions),
-            // TransactionsView(),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
         onPressed: () => openModal(context),
-        // onPressed: () => {},
       ),
     );
   }

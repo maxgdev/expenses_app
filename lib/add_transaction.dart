@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class AddTransaction extends StatefulWidget {
   // Define function parameter
@@ -12,16 +13,36 @@ class AddTransaction extends StatefulWidget {
 class _AddTransactionState extends State<AddTransaction> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
-
+  DateTime selectedDate;
   void submitData() {
+    // check amount is NOT empty before assignment
+    if (amountController.text.isEmpty) {
+      return;
+    }
     final titleData = titleController.text;
     final amountData = double.parse(amountController.text);
 
-    if (titleData.isEmpty || amountData <= 0) {
+    if (titleData.isEmpty || amountData <= 0 || selectedDate == null) {
       return; // return if fields are empty
     }
-    widget.addTransactionFn(titleData, amountData);
+    widget.addTransactionFn(titleData, amountData, selectedDate);
     Navigator.of(context).pop();
+  }
+
+  void openDatePicker() {
+    showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime(2019),
+            lastDate: DateTime.now())
+        .then((pickedDate) {
+      if (pickedDate == null) {
+        return;
+      }
+      setState(() {
+        selectedDate = pickedDate;
+      });
+    });
   }
 
   @override
@@ -39,17 +60,20 @@ class _AddTransactionState extends State<AddTransaction> {
               decoration: InputDecoration(labelText: 'Amount'),
               controller: amountController,
             ),
-            FlatButton(
+            Row(
+              children: [
+                Text(selectedDate == null
+                    ? "Enter Date: "
+                    : DateFormat.yMd().format(selectedDate)),
+                FlatButton(
+                    onPressed: openDatePicker, child: Text("Choose Date")),
+              ],
+            ),
+            RaisedButton(
               child: Text("Add Transaction"),
               onPressed: submitData,
-              // print(titleController.text);
-              // print(amountController.text);
-              // widget.addTransactionFn(
-              //   titleController.text,
-              //   double.parse(amountController.text)
-              //   );
-              // },
-              textColor: Colors.blue,
+              textColor: Colors.white,
+              color: Theme.of(context).accentColor,
             ),
             // () {} Anonymous function to enable onPress
           ],
