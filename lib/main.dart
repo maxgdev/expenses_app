@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import './transaction.dart';
 import './transaction_list.dart';
 import './add_transaction.dart';
+import './chart.dart';
 
 void main() {
   runApp(MyApp());
@@ -32,19 +33,19 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   // Define some dummy List of Transactions
   final List<Transaction> _transactions = [
-    // Transaction(
-    //     id: 't01', title: 'Office Shirt', amount: 19.99, date: DateTime.now()),
-    // Transaction(
-    //     id: 't02', title: 'Trainers', amount: 49.99, date: DateTime.now()),
-    // Transaction(
-    //     id: 't03', title: 'Coffee mug', amount: 5.99, date: DateTime.now()),
-    // Transaction(
-    //     id: 't04', title: 'Lunch date', amount: 17.99, date: DateTime.now()),
-    // Transaction(
-    //     id: 't05',
-    //     title: 'Supermarket shopping',
-    //     amount: 27.54,
-    //     date: DateTime.now()),
+    Transaction(
+        id: 't01', title: 'Office Shirt', amount: 19.99, date: DateTime.now()),
+    Transaction(
+        id: 't02', title: 'Trainers', amount: 49.99, date: DateTime.now()),
+    Transaction(
+        id: 't03', title: 'Coffee mug', amount: 5.99, date: DateTime.now()),
+    Transaction(
+        id: 't04', title: 'Lunch date', amount: 17.99, date: DateTime.now()),
+    Transaction(
+        id: 't05',
+        title: 'Supermarket shopping',
+        amount: 27.54,
+        date: DateTime.now()),
   ];
 
   void _addNewTransaction(String txTitle, double txAmount) {
@@ -82,12 +83,28 @@ class _MyHomePageState extends State<MyHomePage> {
       ]),
       body: SingleChildScrollView(
         child: Column(
-          children: [
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            // Container(
+            //   width: double.infinity,
+            //   height: 150,
+            //   child: Image.network(
+            //       "https://via.placeholder.com/800x280.png/?text=Chart+Area"),
+            // ),
             Container(
-              width: double.infinity,
-              height: 150,
-              child: Image.network(
-                  "https://via.placeholder.com/800x280.png/?text=Chart+Area"),
+              child: Card( 
+                elevation: 6,
+                margin: EdgeInsets.all(20),
+                child: Padding(padding: EdgeInsets.all(5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      ChartView(),
+                      ChartView(),
+                      ChartView()
+                    ],),
+                  ),
+              ),
             ),
             // AddTransaction(_addNewTransaction),
             TransactionList(_transactions),
